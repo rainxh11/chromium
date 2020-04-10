@@ -1,0 +1,33 @@
+# image
+image: Visual Studio 2019
+
+# build platform
+platform: x64
+
+# clone directory
+clone_folder: c:\chromium
+#install:
+
+build_script:
+  - cd c:\chromium
+  - appveyor DownloadFile  "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -FileName depot_tools.zip
+  - 7z x depot_tools.zip
+  - git config --global user.name "RainXH11"
+  - git config --global user.email "rainxh11@gmail.com"
+  - git config --global core.autocrlf false
+  - git config --global core.filemode false
+  - git config --global branch.autosetuprebase always
+  - mkdir chromium && cd chromium
+  - fetch chromium  
+  - autoninja -C out\Default chrome
+  
+after_build:
+- ps: | # package artifacts
+    7z a -m0=LZMA2 -mx9 c:\chromium\chromium.7z c:\chromium\chromium\out\Default\*
+artifacts:
+- path: chromium.7z
+  name: chromium
+ - path: c:\chromium\chromium\out\*
+ - path: c:\chromium\*
+  
+#test_script:
