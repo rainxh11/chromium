@@ -17,9 +17,10 @@ build_script:
   - git config --global core.autocrlf false
   - git config --global core.filemode false
   - git config --global branch.autosetuprebase always
+  - gclient
   - mkdir chromium && cd chromium
-  - fetch chromium  
-  - autoninja -C out\Default chrome
+  - ..\fetch chromium  
+  - ..\autoninja -C out\Default chrome
   
 after_build:
 - ps: | # package artifacts
