@@ -9,7 +9,7 @@ clone_folder: c:\chromium
 install:
   - cd c:\chromium
   - appveyor DownloadFile  "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -FileName depot_tools.zip
-  - 7z x depot_tools.zip
+  - 7z -y x depot_tools.zip
 build_script:
   - cd c:\chromium
   - git config --global user.name "RainXH11"
@@ -23,7 +23,7 @@ build_script:
   
 after_build:
 - ps: | # package artifacts
-    7z a -m0=LZMA2 -mx9 c:\chromium\chromium.7z c:\chromium\chromium\out\Default\*
+    7z a -y -m0=LZMA2 -mx9 c:\chromium\chromium.7z c:\chromium\chromium\out\Default\*
 artifacts:
  - path: c:\chromium\chromium\out\*
  - path: c:\chromium\*
