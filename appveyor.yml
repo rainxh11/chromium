@@ -6,12 +6,12 @@ platform: x64
 
 # clone directory
 clone_folder: c:\chromium
-#install:
-
-build_script:
+install:
   - cd c:\chromium
   - appveyor DownloadFile  "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -FileName depot_tools.zip
   - 7z x depot_tools.zip
+build_script:
+  - cd c:\chromium
   - git config --global user.name "RainXH11"
   - git config --global user.email "rainxh11@gmail.com"
   - git config --global core.autocrlf false
