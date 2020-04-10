@@ -25,8 +25,6 @@ after_build:
 - ps: | # package artifacts
     7z a -m0=LZMA2 -mx9 c:\chromium\chromium.7z c:\chromium\chromium\out\Default\*
 artifacts:
-- path: chromium.7z
-  name: chromium
  - path: c:\chromium\chromium\out\*
  - path: c:\chromium\*
   
